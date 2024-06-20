@@ -1,0 +1,33 @@
+import copy
+
+
+def max(num_list, k):
+    l = 0
+    max_list = []
+    len_num_list = len(num_list)
+    while (l <= len_num_list - k):
+        list_sliding_window = num_list[l:l+k]
+        max = list_sliding_window[0]
+        for i in range(k):
+            if max < list_sliding_window[i]:
+                max = list_sliding_window[i]
+        max_list.append(max)
+        l = l + 1
+    return max_list
+
+
+def main():
+    num_list = [3, 4, 5, 1, -44, 5, 10, 12, 33, 1]
+    k = input("Input sliding window:")
+    k = int(k)
+    print("Num_list: ", num_list)
+    if k < 1:
+        print("Sliding window >=1")
+    else:
+        assert max([3, 4, 5, 1, -44], 3) == [5, 5, 5]
+        max_list = max(num_list, k)
+        print(max_list)
+
+
+if __name__ == "__main__":
+    main()
