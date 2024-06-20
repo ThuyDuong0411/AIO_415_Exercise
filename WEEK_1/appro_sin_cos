@@ -1,0 +1,54 @@
+def factorial_fcn(n):
+    fcn = 1
+    for i in range(n):
+        fcn = fcn * (i+1)
+    return fcn
+
+
+def appro_sin(x, n):
+    result = 0
+    num = 1
+    for i in range(n):
+        sign = (-1) ** i
+        num = x ** (2 * i + 1)
+        result = result + (num * sign) / (factorial_fcn(2 * i + 1))
+    return result
+
+
+def appro_cos(x, n):
+    result = 0
+    num = 1
+    for i in range(n):
+        sign = (-1) ** i
+        num = x ** (2 * i)
+        result = result + (num * sign) / (factorial_fcn(2 * i))
+    return result
+
+
+def appro_sinh(x, n):
+    result = 0
+    num = 1
+    for i in range(n):
+        num = x ** (2 * i + 1)
+        result = result + num / (factorial_fcn(2 * i + 1))
+    return result
+
+
+def appro_cosh(x, n):
+    result = 0
+    num = 1
+    for i in range(n):
+        num = x ** (2 * i)
+        result = result + num / (factorial_fcn(2 * i))
+    return result
+
+
+def main():
+    print(f'{appro_sin(3.14, 10)}')
+    print(f'{appro_cos(3.14, 10)}')
+    print(f'{appro_sinh(3.14, 10)}')
+    print(f'{appro_cosh(3.14, 10)}')
+
+
+if __name__ == "__main__":
+    main()
