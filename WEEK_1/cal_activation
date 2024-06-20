@@ -1,0 +1,58 @@
+def is_number(n):
+    try:
+        float(n)
+    except ValueError:
+        return False
+    return True
+
+
+def cal_sigmod(x):
+    result = 1 / (1 + math.e ** (-x))
+    return result
+
+
+def cal_relu(x):
+    if x <= 0:
+        result = 0
+    else:
+        result = x
+    return result
+
+
+def cal_elu(x):
+    alpha = 0.01
+    if x <= 0:
+        result = alpha * (math.e ** x - 1)
+    else:
+        result = x
+    return result
+
+
+def cal_activation_fun(x, act_name):
+    result = None
+    if (act_name == "sigmoid"):
+        result = cal_sigmod(x)
+    elif (act_name == "relu"):
+        result = cal_relu(x)
+    elif (act_name == "elu"):
+        result = cal_elu(x)
+    return result
+
+
+def main():
+    x = input("Input x = ")
+    if not is_number(x):
+        print("x must be a number")
+        return
+    else:
+        x = float(x)
+        act_name = input("activation function name: ")
+        if (act_name == 'sigmoid') or (act_name == 'relu') or (act_name == 'elu'):
+            result = cal_activation_fun(x, act_name)
+            print(f'{act_name}: f({x})= {result}')
+        else:
+            print(f'{act_name} is not supported')
+
+
+if __name__ == "__main__":
+    main()
