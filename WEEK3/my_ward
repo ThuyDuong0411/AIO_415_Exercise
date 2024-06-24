@@ -1,0 +1,101 @@
+from abc import ABC, abstractmethod
+
+
+class Person(ABC):
+    def __init__(self, name: str, yob: int):
+        self._name = name
+        self._yob = yob
+
+    def getYoB(self):
+        return self._yob
+
+    @abstractmethod
+    def describe(self):
+        pass
+
+
+class Student(Person):
+    def __init__(self, name, yob, grade):
+        super().__init__(name, yob)
+        self.__grade = grade
+
+    def describe(self):
+        print(
+            f"Student-Name: {self._name} - YoB: {self._yob} - Grade: {self.__grade}")
+
+
+class Teacher(Person):
+    def __init__(self, name, yob, subject):
+        super().__init__(name, yob)
+        self.__subject = subject
+
+    def describe(self):
+        print(
+            f"Student-Name: {self._name} - YoB: {self._yob} - Subject: {self.__subject}")
+
+
+class Doctor(Person):
+    def __init__(self, name, yob, specialist):
+        super().__init__(name, yob)
+        self.__specialist = specialist
+
+    def describe(self):
+        print(
+            f"Student-Name: {self._name} - YoB: {self._yob} - Specialist: {self.__specialist}")
+
+
+class Ward():
+    def __init__(self, name):
+        self.__name = name
+        self.__listPeople = list()
+
+    def addPerson(self, person: Person):
+        self.__listPeople.append(person)
+
+    def describe(self):
+        print(f"Ward Name:{self.__name}")
+        for p in self.__listPeople:
+            p.describe()
+
+    def countDoctor(self):
+        counter = 0
+        for p in self.__listPeople:
+            if isinstance(p, Doctor):
+                counter += 1
+        return counter
+
+    def sortAge(self):
+        self.__listPeople.sort(key=lambda x: x.getYoB(), reverse=True)
+
+    def computeAverage(self):
+        avg = 0
+        counter = 0
+        for p in self.__listPeople:
+            if isinstance(p, Teacher):
+                avg = avg + p.getYoB()
+                counter = counter + 1
+        avg = avg/counter
+        return avg
+
+
+def main():
+    student1 = Student(name="Lan", yob=2010, grade="7")
+    teacher1 = Teacher(name="Tam", yob=1979, subject="Toan")
+    doctor1 = Doctor(name="Mai", yob=1997, specialist="Da khoa")
+    teacher2 = Teacher(name="Phuong", yob=2000, subject="Ly")
+    doctor2 = Doctor(name="Nga", yob=1999, specialist="Nhi")
+    ward1 = Ward(name="HBT")
+    ward1.addPerson(student1)
+    ward1.addPerson(teacher1)
+    ward1.addPerson(teacher2)
+    ward1.addPerson(doctor1)
+    ward1.addPerson(doctor2)
+    ward1.describe()
+    print(ward1.countDoctor())
+    ward1.sortAge()
+    ward1.describe()
+    print("Average year of birth (teacher):", ward1.computeAverage())
+
+
+if __name__ == "__main__":
+    main()
