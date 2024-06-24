@@ -1,0 +1,44 @@
+class MyQueue():
+    def __init__(self, capacity):
+        self.__capacity = capacity
+        self.__queue = list()
+
+    def is_empty(self):
+        return len(self.__queue) == 0
+
+    def is_full(self):
+        return len(self.__queue) == self.__capacity
+
+    def dequeue(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+        else:
+            return self.__queue.pop(0)
+
+    def enqueue(self, value):
+        if self.is_full():
+            raise Exception("Queue is full")
+        else:
+            self.__queue.append(value)
+
+    def front(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+        else:
+            return self.__queue[0]
+
+
+def main():
+    queue_1 = MyQueue(5)
+    queue_1.enqueue(1)
+    queue_1.enqueue(2)
+    print(queue_1.is_full())
+    print(queue_1.front())
+    print(queue_1.dequeue())
+    print(queue_1.front())
+    print(queue_1.dequeue())
+    print(queue_1.is_empty())
+
+
+if __name__ == "__main__":
+    main()

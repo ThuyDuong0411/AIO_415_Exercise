@@ -1,0 +1,44 @@
+class MyStack():
+    def __init__(self, capacity):
+        self.__capacity = capacity
+        self.__stack = list()
+
+    def is_empty(self):
+        return len(self.__stack) == 0
+
+    def is_full(self):
+        return len(self.__stack) == self.__capacity
+
+    def pop(self):
+        if self.is_empty():
+            raise Exception("Stack is empty")
+        else:
+            return self.__stack.pop()
+
+    def push(self, value):
+        if self.is_full():
+            raise Exception("Stack is full")
+        else:
+            self.__stack.append(value)
+
+    def top(self):
+        if self.is_empty():
+            raise Exception("Stack is empty")
+        else:
+            return self.__stack[-1]
+
+
+def main():
+    stack_1 = MyStack(5)
+    stack_1.push(1)
+    stack_1.push(2)
+    print(stack_1.is_full())
+    print(stack_1.top())
+    print(stack_1.pop())
+    print(stack_1.top())
+    print(stack_1.pop())
+    print(stack_1.is_empty())
+
+
+if __name__ == "__main__":
+    main()
