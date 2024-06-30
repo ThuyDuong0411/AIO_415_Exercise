@@ -23,7 +23,7 @@ def countword(data, data_source):
 
 
 def main():
-    with open('E:\AIO 2024\Demo Git\AIO-EXERCISE\P1_data.txt', 'r') as f:
+    with open('E:\AIO 2024\AIO_415_EXERCISE\WEEK_2\P1_data.txt', 'r') as f:
         corpus = f.read()
     f.close()
     data_source = standardlize(corpus)
